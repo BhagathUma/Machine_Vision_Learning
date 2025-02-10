@@ -72,3 +72,96 @@ import numpy as np
 # cv.waitKey(0)
 
 
+"""Basic Functions"""
+
+# img = cv.imread("Images/leaf.jpg")
+
+##Color to gray
+# img= cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+# cv.imshow("GRAY IMAGE",img)
+
+##blur
+# img = cv.blur(img,(3,3),0)
+# cv.imshow("Blurred image",img)
+
+##edge detection
+
+# img=cv.Canny(img, 135,175)
+# cv.imshow("Edge detected image",img)
+
+##resize
+# img=cv.resize(img,(1200,1200))
+# cv.imshow("Resized image",img)
+
+
+"""Image transformation"""
+# img = cv.imread("Images\cat2.jpg")
+
+# #translation
+
+# def translation(img,x,y):
+#     trans_Matrix=np.float32([[1,0,x],[0,1,y]])
+
+#     return cv.warpAffine(img,trans_Matrix,(img.shape[0],img.shape[1]))
+# img = translation(img,10,10)
+
+# #flip
+
+# # 0 -> vertical flip
+# # 1 -> horizontal flip
+# # -1 -> both vertical and horizontal flip
+# img=cv.flip(img,0)
+
+
+
+# cv.imshow("Translated image",img)
+
+# cv.waitKey(0)
+
+"""Contour detection"""
+# img=cv.imread(r"Images/cat1.jpg")
+# gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+
+# # Canny=cv.Canny(gray,125,175)
+# ret, thresh =cv.threshold(gray,125,255,cv.THRESH_BINARY)
+
+# contours, highrar =cv.findContours(thresh,cv.RETR_LIST,cv.CHAIN_APPROX_SIMPLE)
+# print(len(contours))
+
+# blank=np.zeros((img.shape[0],img.shape[1],img.shape[2]),dtype="uint8")
+# cv.drawContours(blank,contours,-1,(255,0,0),2)
+
+# blank=cv.resize(blank,(800,600))
+# cv.imshow("thresh",blank)
+
+# cv.waitKey(0)
+
+"""Color Space"""
+
+# img=cv.imread("Images\Colorful.jpg")
+# cv.imshow("Colorful",img)
+# #BGR2RGB
+# rgb=cv.cvtColor(img,cv.COLOR_BGR2RGB)
+# cv.imshow("RGB",rgb)
+
+# #BGR2HSV
+# hsv=cv.cvtColor(img,cv.COLOR_BGR2HSV)
+# cv.imshow("HSV",hsv)
+
+# #BGR2LAB
+# lab=cv.cvtColor(img,cv.COLOR_BGR2LAB)
+# cv.imshow("LAB",lab)
+
+# #BGR2GRAY
+# gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+# cv.imshow("GRAY",gray)
+
+# b,g,r =cv.split(img)
+# cv.imshow("B",b)
+# cv.imshow("G",g)
+# cv.imshow("R",r)
+# img_merged=cv.merge([b,g,r])
+# cv.imshow("Merged",img_merged)
+
+# cv.waitKey(0)
+
