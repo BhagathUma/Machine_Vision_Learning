@@ -39,7 +39,7 @@ import numpy as np
 #     cv.imshow("Video",frame)
 #     if cv.waitKey(1) == ord('q'):
 #         break
-# cv.destroyAllwindows()
+# cv.destroyAllWindows()
 # video.release()
 
 
@@ -165,3 +165,51 @@ import numpy as np
 
 # cv.waitKey(0)
 
+
+"""Smoothing Techniques"""
+# img=cv.imread(r"Images\dog2.jpg")
+
+# #average blur
+# blur_img = cv.blur(img,(3,3))
+
+# #Gaussian blur
+# blur_img=cv.GaussianBlur(img, (3,3), 5) 
+
+# #Median blur
+# blur_img=cv.medianBlur(img, 3)
+
+# #Bilateral blur
+# blur_img=cv.bilateralFilter(img,5,15,15)
+
+# blur_img=cv.resize(blur_img,(750,500))
+# cv.imshow("Blur",blur_img)
+# cv.waitKey(0)
+
+"""Bitwise Operators"""
+# blank=np.zeros((600,600), dtype="uint8")
+# rectangle = cv.rectangle(blank.copy(),(30,30),(570,570),255,thickness=cv.FILLED)
+# circle=cv.circle(blank.copy(),(299,299),300,255,thickness=cv.FILLED)
+# cv.imshow("Rectangle",rectangle)
+# cv.imshow("Circle",circle)
+# #AND
+# bitwise=cv.bitwise_and(rectangle,circle)
+# #OR
+# bitwise=cv.bitwise_or(rectangle,circle)
+# #XOR
+# bitwise=cv.bitwise_xor(rectangle,circle)
+# #NOT
+# bitwise=cv.bitwise_not(rectangle)
+
+# cv.imshow("Bitwise",bitwise)
+
+# cv.waitKey(0)
+
+"""Masking"""
+img=cv.imread(r"Images\human.jpg")
+
+blank=np.zeros(img.shape[:2],dtype="uint8")
+mask=cv.circle(blank, (img.shape[1]//2-30,img.shape[0]//2),100,255,-1)
+
+masked=cv.bitwise_and(img,img,mask=mask)
+cv.imshow("Masked",masked)
+cv.waitKey(0)
