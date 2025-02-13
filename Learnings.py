@@ -1,5 +1,6 @@
 import cv2 as cv
 import numpy as np
+import matplotlib.pyplot as plt
 """reading images"""
 
 # img = cv.imread("Images\cat1.jpg")
@@ -205,11 +206,75 @@ import numpy as np
 # cv.waitKey(0)
 
 """Masking"""
-img=cv.imread(r"Images\human.jpg")
+# img=cv.imread(r"Images\human.jpg")
 
-blank=np.zeros(img.shape[:2],dtype="uint8")
-mask=cv.circle(blank, (img.shape[1]//2-30,img.shape[0]//2),100,255,-1)
+# blank=np.zeros(img.shape[:2],dtype="uint8")
+# mask=cv.circle(blank, (img.shape[1]//2-30,img.shape[0]//2),100,255,-1)
 
-masked=cv.bitwise_and(img,img,mask=mask)
-cv.imshow("Masked",masked)
-cv.waitKey(0)
+# masked=cv.bitwise_and(img,img,mask=mask)
+# cv.imshow("Masked",masked)
+# cv.waitKey(0)
+
+"""Histograms"""
+img=cv.imread(r"Images\leaf.jpg")
+# # gray hist
+# gray = cv.cvtColor(img,cv.COLOR_BGRGRAY)
+# cv.imshow("Gray",gray)
+# #calculating histogram
+# gray_hist = cv.calcHist([gray],[0],None,[256],[0,256])
+
+# plt.figure()
+# plt.title("Histogram")
+# plt.plot(gray_hist)
+# plt.show()
+
+# #color hist
+# col = ['r','g','b']
+# plt.figure()
+# cv.imshow("Image",img)
+# for i,col in enumerate(col):
+#     hist=cv.calcHist([img],[i],None,[256],[0,256])
+#     plt.plot(hist,color=col)
+# plt.show()
+
+# cv.waitKey(0)
+
+"""Thresholding techniques"""
+# img = cv.imread(r"Images/face.jpg")
+
+# gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+#cv.imshow("Image",gray)
+# # Simple thresholding
+# threshold, thresh = cv.threshold(gray, 155,255,cv.THRESH_BINARY)
+# cv.imshow("Threshold Binary", thresh)
+
+# # Adaptive thresholding
+# thresh=cv.adaptiveThreshold(gray,255,cv.ADAPTIVE_THRESH_MEAN_C,cv.THRESH_BINARY,11,3)
+# cv.imshow("Adaptive Threshold", thresh)
+
+
+# cv.imshow("Masked", masked)
+# cv.waitKey(0)
+
+"""Edge detection """
+# img=cv.imread(r"Images\face.jpg")
+# gray=cv.cvtColor(img,cv.COLOR_BGR2GRAY)
+
+# #laplacian
+# lap=cv.Laplacian(gray,cv.CV_64F)
+# lap=np.uint8(np.absolute(lap))
+# cv.imshow("Laplacian",lap)
+
+# #Sobel
+# sobelx = cv.Sobel(gray,cv.CV_64F,1,0)
+# sobely = cv.Sobel(gray,cv.CV_64F,0,1)
+# cv.imshow("SobelX",sobelx)
+# cv.imshow("SobelY",sobely)
+# combined = cv.bitwise_or(sobelx,sobely)
+# cv.imshow("Combined",combined)
+
+# #canny
+# canny=cv.Canny(gray,150,195)
+# cv.imshow("Canny",canny)
+
+# cv.waitKey(0)
